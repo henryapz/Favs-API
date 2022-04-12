@@ -1,0 +1,24 @@
+{
+  "name": "favs-api",
+  "version": "1.0.0",
+  "description": "Assesment Backend",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com-mir:henryapz/Favs-API.git"
+  },
+  "author": "Henry Aymara Apaza",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.3",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.0",
+    "nodemon": "^2.0.15"
+  }
+}
