@@ -15,8 +15,8 @@ Favs is a new company that aims to provide a better way to organize your favorit
 	- [Login](#login)
 	- [Create item](#create-item)
   - [Get all list of favorites](#get-all-list-of-favorites)
-	- [Create a new list of favorites](#create-a-new-list-of-favorites)
-	- [Get a single list of favorites](#get-a-single-list-of-favorites)
+  - [Create a new list of favorites](#create-a-new-list-of-favorites)
+  - [Get a single list of favorites](#get-a-single-list-of-favorites)
   - [Delete a single list of favorites](#delete-a-single-list-of-favorites)
 
 ## Requirements
