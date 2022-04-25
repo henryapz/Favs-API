@@ -13,10 +13,10 @@ async function createUser(req, res) {
 
     const oldUser = await User.findOne({ email });
     if (oldUser) {
-      res.status(409).json({error:'User Already Exist. Please Login'});
-    }else {
-      const user = await User.create({ email, password });
-      res.status(201).json(user);
+      res.status(409).json({ error: 'User Already Exist. Please Login' });
+    } else {
+      await User.create({ email, password });
+      res.status(201).json({ success: true });
     }
   } catch (err) {
     res.status(500).json({ error: err });
@@ -34,14 +34,18 @@ async function loginUser(req, res) {
     const user = await User.findOne({ email });
 
     if (user && (await bcrypt.compare(password, user.password))) {
-      // eslint-disable-next-line no-underscore-dangle
-      const token = jwt.sign({ userId: user._id, email }, process.env.TOKEN_KEY, {
-        expiresIn: '2h',
-      });
-      
+      const token = jwt.sign(
+        // eslint-disable-next-line no-underscore-dangle
+        { userId: user._id, email },
+        process.env.TOKEN_KEY,
+        {
+          expiresIn: '2h',
+        }
+      );
+
       user.token = token;
 
-      res.status(200).json({token});
+      res.status(200).json({ token });
     } else {
       res.status(401).json({ error: 'Invalid Credentials' });
     }
