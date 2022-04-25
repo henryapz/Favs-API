@@ -4,6 +4,21 @@
 
 Favs is a new company that aims to provide a better way to organize your favorite things: music, clothes, courses, etc., all in one place.
 
+## Documentation
+
+* [Requirements](#requirements)
+* [Installation](#installation)
+* [Authorization](#authorization)
+* [Status Codes](#status-codes)
+* [Usage](#usage)
+	- [Create user](#create-user)
+	- [Login](#login)
+	- [Create item](#create-item)
+  - [Get all list of favorites](#get-all-list-of-favorites)
+	- [Create a new list of favorites](#create-a-new-list-of-favorites)
+	- [Get a single list of favorites](#get-a-single-list-of-favorites)
+  - [Delete a single list of favorites](#delete-a-single-list-of-favorites)
+
 ## Requirements
 
 * Each user will have a unique id, and he will authenticate using a non-empty email and a password.
@@ -207,7 +222,7 @@ Content-Type: application/json
 }
 ```
 
-### Creates a new list of favorites
+### Create a new list of favorites
 
 **You send:**  Your data for your new favorite list (name, list of fav items ID).
 
