@@ -8,7 +8,7 @@ const isAuthenticated = (req, res, next) => {
     const bearer = bearerHeader.split(' ');
     const bearerToken = bearer[1];
     if (!bearerToken) {
-      res.status(403).send({ error: 'A token is required for authentication' });
+      res.status(403).send({ error: 'You are unauthorized to make this request.' });
     }
 
     const decoded = jwt.verify(bearerToken, config.TOKEN_KEY);

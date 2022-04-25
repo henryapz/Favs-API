@@ -22,7 +22,7 @@ This is a [Node.js](https://nodejs.org/en/) module available through the
 [npm registry](https://www.npmjs.com/).
 
 Before installing, [download and install Node.js](https://nodejs.org/en/download/).
-Node.js 0.10 or higher is required.
+Node.js v14 or higher is required.
 Installation is done using the
 [`npm install` command](https://docs.npmjs.com/getting-started/installing-npm-packages-locally):
 
@@ -45,3 +45,74 @@ Favs-API returns the following status codes in its API:
 | 400 | `BAD REQUEST` |
 | 404 | `NOT FOUND` |
 | 500 | `INTERNAL SERVER ERROR` |
+
+## Usage
+
+### Create User
+**You send:**  Your email and password.
+**You get:** An `Token` with wich you can make further actions.
+
+**Request:**
+```json
+POST /login HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "test@mail.com",
+    "password": "123456" 
+}
+
+```
+**Successful Response:**
+```json
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+    "success": true,
+}
+```
+**Failed Response:**
+```json
+HTTP/1.1 400 Bad request
+Content-Type: application/json
+
+{
+    "error": "username and password are required"
+}
+``` 
+
+### Login
+**You send:**  Your  login credentials (email and password).
+**You get:** An `Token` with wich you can make further actions.
+
+**Request:**
+```json
+POST /login HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "test@mail.com",
+    "password": "123456" 
+}
+
+```
+**Successful Response:**
+```json
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+   "token": "eyJ1c2VySWQiOiI2MjY1Zjc1ZjdjYzY2OGQyMjA5NDgxZWQiLCJlbWFpbCI6ImhlbnJ5MkBnbWFpbC5jb20iLCJpYXQiOjE2NTA4NDk4ODUsImV4cCI6MTY1MDg1NzA4NX0.uwU4kjpncZz88Op1x-XxMvAuwRLT9kQ_w1SONOyIIhc",
+}
+```
+**Failed Response:**
+```json
+HTTP/1.1 401 Unauthorized
+Content-Type: application/json
+
+{
+    "code": 401,
+    "error": "Invalid Credentials"
+}
+``` 

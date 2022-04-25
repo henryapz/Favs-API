@@ -8,7 +8,7 @@ async function createUser(req, res) {
     const { email, password } = req.body;
 
     if (!(email && password)) {
-      res.status(400).json('All input are required');
+      res.status(400).json({ error: 'username and password are required' });
     }
 
     const oldUser = await User.findOne({ email });
@@ -28,7 +28,7 @@ async function loginUser(req, res) {
     const { email, password } = req.body;
 
     if (!(email && password)) {
-      res.status(400).json('All input are required');
+      res.status(400).json({ error: 'All input are required' });
     }
 
     const user = await User.findOne({ email });
