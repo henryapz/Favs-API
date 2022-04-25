@@ -1,7 +1,5 @@
 [![Express Logo](https://i.cloudup.com/zfY6lL7eFa-3000x3000.png)](http://expressjs.com/)
 
-[![NPM Version][npm-version-image]][npm-url]
-
 # Favs-API
 
 Favs is a new company that aims to provide a better way to organize your favorite things: music, clothes, courses, etc., all in one place.

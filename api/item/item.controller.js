@@ -11,9 +11,9 @@ async function createItem(req, res) {
 
     const item = await Item.create({ title, description, link });
 
-    res.status(200).json(item);
+    res.status(201).json(item);
   } catch (err) {
-    res.status(400).json({ error: err });
+    res.status(500).json({ error: err });
   }
 }
 

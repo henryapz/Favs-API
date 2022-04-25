@@ -13,11 +13,11 @@ async function createUser(req, res) {
 
     const oldUser = await User.findOne({ email });
     if (oldUser) {
-      res.status(409).json('User Already Exist. Please Login');
+      res.status(409).json({error:'User Already Exist. Please Login'});
+    }else {
+      const user = await User.create({ email, password });
+      res.status(201).json(user);
     }
-    const user = await User.create({ email, password });
-
-    res.status(201).json(user);
   } catch (err) {
     res.status(500).json({ error: err });
   }
@@ -35,7 +35,7 @@ async function loginUser(req, res) {
 
     if (user && (await bcrypt.compare(password, user.password))) {
       // eslint-disable-next-line no-underscore-dangle
-      const token = jwt.sign({ user_id: user._id, email }, process.env.TOKEN_KEY, {
+      const token = jwt.sign({ userId: user._id, email }, process.env.TOKEN_KEY, {
         expiresIn: '2h',
       });
       
