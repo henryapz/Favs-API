@@ -48,9 +48,10 @@ Favs-API returns the following status codes in its API:
 
 ## Usage
 
-### Create User
+### Create user
 **You send:**  Your email and password.
-**You get:** An `Token` with wich you can make further actions.
+
+**You get:** A `success` message with the status.
 
 **Request:**
 ```json
@@ -84,6 +85,7 @@ Content-Type: application/json
 
 ### Login
 **You send:**  Your  login credentials (email and password).
+
 **You get:** An `Token` with wich you can make further actions.
 
 **Request:**
@@ -116,3 +118,45 @@ Content-Type: application/json
     "error": "Invalid Credentials"
 }
 ``` 
+
+### Create item
+**You send:**  Your data for your new item (title, description, link).
+
+**You get:** Your data, current ID, creation date.
+
+**Request:**
+```json
+POST /login HTTP/1.1
+Content-Type: application/json
+
+{
+    "title": "Polera negra",
+    "description": "Polera edición otoño 2022",
+    "link": "htts://www.fakestore.com/65132432165432",
+}
+
+```
+**Successful Response:**
+```json
+HTTP/1.1 201 OK
+Content-Type: application/json
+
+{
+    "_id": "625b8dc29e97dc73e205a45c",
+    "title": "Polera negra",
+    "description": "Polera edición otoño 2022",
+    "link": "htts://www.fakestore.com/65132432165432",
+    "createdAt": "2022-04-17T03:47:14.416Z",
+    "updatedAt": "2022-04-17T03:47:14.416Z",
+    "__v": 0
+}
+```
+**Failed Response:**
+```json
+HTTP/1.1 400 Bad request
+Content-Type: application/json
+
+{
+    "error": "title is required"
+}
+```

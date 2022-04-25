@@ -6,12 +6,12 @@ async function createItem(req, res) {
     const { title, description, link } = req.body;
 
     if (!title) {
-      res.status(400).json({ error: 'Title is required' });
+      res.status(400).json({ error: 'title is required' });
+    }else {
+      const item = await Item.create({ title, description, link });
+      res.status(201).json(item);
     }
 
-    const item = await Item.create({ title, description, link });
-
-    res.status(201).json(item);
   } catch (err) {
     res.status(500).json({ error: err });
   }
