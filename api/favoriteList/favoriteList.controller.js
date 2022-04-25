@@ -50,7 +50,7 @@ async function getFavListById(req, res) {
     const { id: favListId } = req.params;
     const owner = req.user.userId;
 
-    const favItem = await FavItem.find({
+    const favItem = await FavItem.findOne({
       owner,
       _id: favListId,
     })
@@ -73,7 +73,7 @@ async function deleteFavListById(req, res) {
       _id: favListId,
     });
 
-    res.status(200).json({ result: 'Borrado con exito' });
+    res.status(200).json({ success: true });
   } catch (err) {
     res.status(500).json({ error: err });
   }

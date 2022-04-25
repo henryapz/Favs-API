@@ -55,7 +55,7 @@ Favs-API returns the following status codes in its API:
 
 **Request:**
 ```json
-POST /login HTTP/1.1
+POST /api/users/createUser HTTP/1.1
 Content-Type: application/json
 
 {
@@ -90,7 +90,7 @@ Content-Type: application/json
 
 **Request:**
 ```json
-POST /login HTTP/1.1
+POST /api/users/login HTTP/1.1
 Content-Type: application/json
 
 {
@@ -122,11 +122,11 @@ Content-Type: application/json
 ### Create item
 **You send:**  Your data for your new item (title, description, link).
 
-**You get:** Your data, current ID, creation date.
+**You get:** The data you sent, current ID, creation date.
 
 **Request:**
 ```json
-POST /login HTTP/1.1
+POST /api/items/createItem HTTP/1.1
 Content-Type: application/json
 
 {
@@ -158,5 +158,181 @@ Content-Type: application/json
 
 {
     "error": "title is required"
+}
+```
+
+### Get all list of favorites
+
+**You get:** All list of favorites from your current user.
+
+**Request:**
+```json
+GET /api/favs/ HTTP/1.1
+Content-Type: application/json
+```
+**Successful Response:**
+```json
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+[
+    {
+        "_id": "625b99bcc7d57d0cf366ee53",
+        "name": "Fav list 1",
+        "owner": "625b87d9b9741a7efdca2e70",
+        "favItems": [
+            {
+                "_id": "625b8dc29e97dc73e205a45c",
+                "title": "Polera negra",
+                "description": "Polera marca La Coste exclusiva edición otoño 2022",
+                "link": "htts://www.fakestore.com/65132432165432",
+                "createdAt": "2022-04-17T03:47:14.416Z",
+                "updatedAt": "2022-04-17T03:47:14.416Z",
+                "__v": 0
+            }
+        ],
+        "createdAt": "2022-04-17T04:38:20.964Z",
+        "updatedAt": "2022-04-17T04:38:20.964Z",
+        "__v": 0
+    }
+]
+```
+**Failed Response:**
+```json
+HTTP/1.1 401 Unauthorized
+Content-Type: application/json
+
+{
+    "error": "Invalid Credentials"
+}
+```
+
+### Creates a new list of favorites
+
+**You send:**  Your data for your new favorite list (name, list of fav items ID).
+
+**You get:** The data you sent, current ID, owner ID, creation date.
+
+**Request:**
+```json
+POST /api/favs/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "name":"My first fav list",
+    "favItems": 
+        [
+            "625b8dc29e97dc73e205a45c"
+        ]
+}
+```
+**Successful Response:**
+```json
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+[
+    {
+        "_id": "625b99bcc7d57d0cf366ee53",
+        "name": "My first fav list",
+        "owner": "625b87d9b9741a7efdca2e70",
+        "favItems": [
+            {
+                "_id": "625b8dc29e97dc73e205a45c",
+                "title": "Polera negra",
+                "description": "Polera marca La Coste exclusiva edición otoño 2022",
+                "link": "htts://www.fakestore.com/65132432165432",
+                "createdAt": "2022-04-17T03:47:14.416Z",
+                "updatedAt": "2022-04-17T03:47:14.416Z",
+                "__v": 0
+            }
+        ],
+        "createdAt": "2022-04-17T04:38:20.964Z",
+        "updatedAt": "2022-04-17T04:38:20.964Z",
+        "__v": 0
+    }
+]
+```
+**Failed Response:**
+```json
+HTTP/1.1 401 Unauthorized
+Content-Type: application/json
+
+{
+    "error": "Invalid Credentials"
+}
+```
+
+### Get a single list of favorites
+
+**You get:** A single list of favorites from your current user.
+
+**Request:**
+```json
+GET /api/favs/:id HTTP/1.1
+Content-Type: application/json
+```
+**Successful Response:**
+```json
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+    "_id": "625b99bcc7d57d0cf366ee53",
+    "name": "Fav list 1",
+    "owner": "625b87d9b9741a7efdca2e70",
+    "favItems": [
+        {
+            "_id": "625b8dc29e97dc73e205a45c",
+            "title": "Polera negra",
+            "description": "Polera marca La Coste exclusiva edición otoño 2022",
+            "link": "htts://www.fakestore.com/65132432165432",
+            "createdAt": "2022-04-17T03:47:14.416Z",
+            "updatedAt": "2022-04-17T03:47:14.416Z",
+            "__v": 0
+        }
+    ],
+    "createdAt": "2022-04-17T04:38:20.964Z",
+    "updatedAt": "2022-04-17T04:38:20.964Z",
+    "__v": 0
+}
+```
+**Failed Response:**
+```json
+HTTP/1.1 401 Unauthorized
+Content-Type: application/json
+
+{
+    "error": "Invalid Credentials"
+}
+```
+
+### Delete a single list of favorites
+
+**You send:**  The ID of the list of favorites that you want to delete.
+
+**You get:** An status of the request.
+
+**Request:**
+```json
+DELETE /api/favs/:id HTTP/1.1
+Content-Type: application/json
+```
+**Successful Response:**
+```json
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+    "success": true,
+}
+```
+**Failed Response:**
+```json
+HTTP/1.1 401 Unauthorized
+Content-Type: application/json
+
+{
+    "error": "Invalid Credentials"
 }
 ```
