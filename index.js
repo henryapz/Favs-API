@@ -9,7 +9,7 @@ const routes = require('./routes');
 const app = express();
 
 const port = process.env.PORT || 8080;
-app.listen(port, () => {
+const server = app.listen(port, () => {
   expressConfig(app);
   connectDB();
   routes(app);
@@ -17,4 +17,4 @@ app.listen(port, () => {
   console.log(`App is running on port ${port}`);
 });
 
-export default app;
+module.exports = { app, server };
