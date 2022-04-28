@@ -8,6 +8,7 @@ async function createFavList(req, res) {
 
     if (!name) {
       res.status(400).json({ error: 'Favorite List name is required' });
+      return;
     }
 
     // Check if user already has a list with this name
