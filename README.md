@@ -8,6 +8,7 @@ Favs is a new company that aims to provide a better way to organize your favorit
 
 * [Requirements](#requirements)
 * [Installation](#installation)
+* [Testing](#testing)
 * [Authorization](#authorization)
 * [Status Codes](#status-codes)
 * [Usage](#usage)
@@ -43,6 +44,31 @@ Installation is done using the
 
 ```console
 $ npm install
+```
+
+and 
+
+```console
+$ npm run dev
+```
+
+or
+
+```console
+$ npm run start
+```
+
+## Testing
+In order to run test cases:
+
+```console
+$ npm run test
+```
+
+or in watch mode
+
+```console
+$ npm run test:watch
 ```
 
 ## Authorization
